@@ -1,0 +1,48 @@
+<header id="header">
+    <nav>
+        <ul>
+            <li class="squiggly">
+                <a href="/index.html"><img src="images/logo.svg" alt="" class="logo"></a>
+            </li>
+            <li>
+                
+            </li>
+            <span class="right-icons">
+                <li class="squiggly">
+                    <button id="dark-mode" onclick="toggleDarkMode()">
+                        <img src="images/dark_mode.svg" alt="">
+                    </button>
+                </li>
+                <li class="squiggly">
+                    <button class="cart-button"><img src="images/cart.svg" alt=""></button>
+                </li>
+            </span>
+
+        </ul>
+    </nav>
+</header>
+<script>
+    var darkModeBool = false;
+
+    // Check if 'darkmode' is stored in localStorage and update darkModeBool accordingly
+    if (localStorage.getItem("darkmode") === 'true') {
+        darkModeBool = true;
+        document.body.classList.add("dark");
+    } else {
+        localStorage.setItem("darkmode", false);
+    }
+
+    function toggleDarkMode() {
+        darkModeBool = !darkModeBool; // Toggle darkModeBool
+
+        // Toggle the 'dark' class on the body element based on darkModeBool
+        if (darkModeBool) {
+            document.body.classList.add("dark");
+        } else {
+            document.body.classList.remove("dark");
+        }
+
+        // Update the 'darkmode' key in localStorage
+        localStorage.setItem("darkmode", darkModeBool);
+    }
+</script>

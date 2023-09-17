@@ -1,0 +1,565 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows Into Light&display=swap');
+
+@keyframes squiggly {
+    0% {
+        filter: url('#squiggly-0');
+    }
+    25% {
+        filter: url('#squiggly-1');
+    }
+    50% {
+        filter: url('#squiggly-2');
+    }
+    75% {
+        filter: url('#squiggly-3');
+    }
+    100% {
+        filter: url('#squiggly-4');
+    }
+}
+
+@keyframes rainbow {
+    0% {
+        filter: hue-rotate(0deg) saturate(2);
+    }
+    100% {
+        filter: hue-rotate(360deg) saturate(2);
+    }
+}
+
+@keyframes rainbow-dark {
+    0% {
+        filter: hue-rotate(0deg) saturate(2) invert(1);
+    }
+    100% {
+        filter: hue-rotate(360deg) saturate(2) invert(1);
+    }
+}
+
+@keyframes squiggly-dark {
+    0% {
+        filter: url('#squiggly-0') invert(1) hue-rotate(180deg) saturate(5) contrast(5);
+    }
+    25% {
+        filter: url('#squiggly-1') invert(1) hue-rotate(180deg) saturate(5) contrast(5);
+    }
+    50% {
+        filter: url('#squiggly-2') invert(1) hue-rotate(180deg) saturate(5) contrast(5);
+    }
+    75% {
+        filter: url('#squiggly-3') invert(1) hue-rotate(180deg) saturate(5) contrast(5);
+    }
+    100% {
+        filter: url('#squiggly-4') invert(1) hue-rotate(180deg) saturate(5) contrast(5);
+    }
+}
+
+@keyframes dim {
+    0%   {
+       filter: brightness(1);
+       -webkit-filter: brightness(1);
+    }
+    100% {
+       filter: brightness(0.75);
+       -webkit-filter: brightness(0.75);
+    }
+ }
+
+
+:root {
+    --color-primary: white;
+    --color-secondary: black;
+    --squiggly: squiggly 0.5s linear infinite;
+    --squiggly-dark: squiggly-dark 0.5s linear infinite;
+    --rainbow: rainbow 5s linear infinite;
+    --rainbow-dark: rainbow-dark 5s linear infinite;
+    --dim: dim 0.1s linear forwards;
+}
+
+*,  *:before, *:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Shadows Into Light'
+}
+
+html {
+    
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    scrollbar-width: none; 
+    scroll-behavior: smooth;
+
+}
+
+html, body {
+    
+    /* font-kerning: auto; */
+    height: fit-content;
+}
+
+cursor {    
+    animation: var(--squiggly);
+}
+
+body {
+    background: white;
+    width: 100vw;
+    height: fit-content;
+}
+
+header {
+    display: flex;
+    width: 100vw;
+    height: 17.5vh;
+    position: fixed;
+    top: 0;
+    padding: 1vh 3vw;
+    margin-right: 2.5vw;
+}
+
+nav {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+ul {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    list-style: none;
+}
+
+li {
+    display: flex;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover {
+    cursor: pointer;
+}
+
+button {
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.right-icons {
+    display: flex;
+}
+
+.cart-button:hover {
+    animation: var(--dim)
+}
+
+
+#dark-mode {
+    display: flex;
+    align-self: center;
+    background: none;
+    height: 40%;
+    margin-right: 1vw;
+}
+
+#dark-mode img {
+    background: none;
+    height: 100%;
+}
+
+#dark-mode:hover > img {
+    animation: var(--dim);
+}
+
+.squiggly {
+    animation: var(--squiggly)
+}
+
+.rainbow {
+    animation: var(--rainbow)
+}
+
+.logo { 
+    animation: var(--rainbow);
+    width: auto;
+    height: 100%;
+}
+
+.animation {
+    display: none;
+}
+
+.cart-button {
+    display: flex;
+    align-self: center;
+    background: none;
+    height: 50%;
+}
+
+.cart-button img {
+    background: none;
+    height: 100%;
+}
+
+.wil {
+    display: flex;
+    position: fixed;
+    width: 20vw;
+    height: 15vh;
+    bottom: 0;
+    left: 0;
+}
+
+
+.ceo-arrow {
+    visibility: hidden;
+    padding-left: 1rem;
+    padding-bottom: 5vh;
+}
+
+.wil:hover > .ceo-arrow {
+    visibility: visible;
+}
+
+.wil-normal {
+    display: inline
+}
+
+.wil-vandalized {
+    display: none;
+    position: absolute;
+    height: 100%;
+}
+
+.wil:hover > .wil-normal {
+    /* display: none; */
+}
+
+.wil:hover > .wil-vandalized {
+    display: inline
+}
+
+main {
+    margin-top: 22.5vh;
+    
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh 10vw;
+    margin-bottom: 5vh;
+}
+
+.hero-tagline {
+    width: 65rem;
+}
+
+#shop {
+    display: flex;
+    width: 100vw;
+    height: fit-content;
+    padding-top: 25vh;
+    margin-bottom: 5vh;
+
+
+}
+
+#shop-button {
+    width:1px;
+    height: 1px;
+}
+
+.hero-cta {
+    margin-top: 7.5rem;
+}
+
+.hero-cta-text {
+ 
+}
+
+.hero-cta .strikethrough {
+    
+}
+
+.strikethrough-button {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-content: center;
+}
+
+.strikethrough-text {
+    justify-self: center;
+    align-self: center;
+    position: absolute;
+}
+
+.strikethrough {
+    align-self: center;
+    position: absolute;
+    visibility: hidden;
+    filter: invert(17%) sepia(97%) saturate(7041%) hue-rotate(359deg) brightness(104%) contrast(111%);
+}
+
+.strikethrough-button:hover > .strikethrough {
+    visibility: visible;
+    
+}
+
+.carousel {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100vw;
+    height: fit-content;
+    justify-content: space-between;
+    margin-left: 5vw;
+    margin-right: 5vw;
+}
+
+.carousel > .item {
+    
+    flex: 0 0 33.33%;   
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    width: 33%;
+    padding-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+.item .strikethrough-button {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 0vh;
+}
+
+.item > .strikethrough-button:hover {
+    animation: var(--squiggly);
+}
+
+.item > .strikethrough-button:hover > img {
+    animation: var(--dim);
+
+}
+
+.item > .strikethrough-button:hover > * .strikethrough {
+    visibility: visible;
+
+}
+
+.item-preview {
+    display: flex;
+    width: 75%;
+    justify-self: center;
+    align-self: center;
+}
+
+.item-details {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.75rem;
+    font-weight: 600;
+    width: 100%;
+    padding-left: 25%;
+    padding-right: 25%;
+    padding-top: 5%;
+    margin-bottom: 2rem;
+}
+
+.item-name {
+
+    display: flex;
+    white-space: nowrap;
+    width:75%;
+
+}
+
+.item-price {
+    font-size: 2.25rem;
+}
+
+.add-to-cart {
+    display: flex;
+    align-self: center;
+    width: 35%;
+}
+
+.add-to-cart-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.add-to-cart-text {
+    width: 100%;
+}
+
+.add-to-cart:hover .strikethrough {
+    visibility: visible;
+    width: 100%;
+}
+
+footer {
+    display: flex;
+    bottom: 0;
+    left:0;
+    right:0;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    /* margin-top: 5vh; */
+    padding-bottom: 2.5vh;
+}
+
+#cursor {
+    position:absolute;
+    z-index: 99;
+    height:0px;
+    width:0px;
+    pointer-events: none;
+}
+
+
+.cursor-img {
+    position: absolute;
+    transform: translate(-25%,-25%) scale(50%,50%)
+    
+}
+
+.squiggly a:hover {
+    animation: var(--dim);
+}
+
+#product-main {
+    width:100vw;
+    height: 100vh;
+}
+
+@media only screen and (min-width: 640px) and (max-width: 1024px) {
+    
+    .hero-tagline {
+        width: 40rem;
+    }
+
+    .hero-cta {
+        margin-top: 5rem;
+    }
+    
+    .item-price {
+        font-size: 1.75rem;
+    }
+
+    .carousel > .item {
+        flex: 0 0 50%; 
+    }
+}
+
+@media only screen and (max-width: 640px) {
+
+    .logo {
+        width: 75%;
+    }
+
+
+    header {
+        height: 12.5vh;
+        
+    }
+
+    .cart-button {
+        width: 25%;
+    }
+
+    .hero {
+        margin-top: 30vh;
+        margin-bottom: 10vh;
+    }
+    .hero-tagline {
+        width: 22rem;
+    }
+
+    .hero-cta {
+        margin-top: 5rem;
+    }
+    
+    .hero-cta .strikethrough {
+        width: 5rem;
+    }
+
+    .hero-cta-text {
+        width: 3.5rem;
+    }
+
+    .carousel > .item {
+        flex: 0 0 100%; 
+    }
+
+    .item-details {
+        font-size: 1.25rem;
+    }
+    .item-price {
+        font-size: 1.5rem;
+    }
+
+    .add-to-cart-text {
+        width: 50%;
+    }
+
+    .add-to-cart:hover .strikethrough {
+        visibility: visible;
+        width: 50%;
+    }
+
+}
+
+*.dark {background-color: black;}
+
+*.dark h1, *.dark .support a , *.dark p {color: white;}
+
+*.dark img.logo {
+    animation: var(--rainbow-dark)
+}
+
+*.dark img.squiggly {
+    animation: var(--squiggly-dark)
+}
+
+*.dark button.squiggly {
+    animation: var(--squiggly-dark)
+}
+
+*.dark .add-to-cart {
+    animation: var(--squiggly-dark)
+}
+
+body.dark .squiggly > button {
+    animation: var(--squiggly-dark)
+}
+
+.max-plug {
+    color: lime;
+    -webkit-text-stroke: 0.5px black;
+    font-size: 1.25rem;
+    -webkit-text-fill-color: lime;
+    paint-order: stroke fill;
+}
+
+::selection {
+    background: gray;
+  }
