@@ -447,8 +447,66 @@ footer {
 }
 
 #product-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width:100vw;
     height: 100vh;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.nowrap {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.image-preview {
+    width: 50%;
+    height: fit-content;
+}
+
+.item-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-settings {
+    display: flex;
+    flex-direction: column;
+}
+
+.item-settings section {
+    display: flex;
+}
+
+
+input[type="radio"] {
+    display: none;
+    /* Add if not using autoprefixer */
+    -webkit-appearance: none;
+    appearance: none;
+    /* For iOS < 15 to remove gradient background */
+    background-color: white;
+    /* Not removed via appearance */
+    margin: 0;
+    width: 25px;
+    border: 2px solid black;
+  }
+
+input:checked + label{
+    background: black;
+    color: white;
+}
+
+label{
+    padding: 10px 16px;
+    border: 3px solid black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.25s;
 }
 
 @media only screen and (min-width: 640px) and (max-width: 1024px) {
