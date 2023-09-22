@@ -63,17 +63,42 @@
                 </a>
             </section>
             <section id="shop">
+                <script>
+                    function changecolor(button) {
+                        // Get the data attributes from the clicked swatch button
+                        var productid = button.getAttribute('data-productid');
+                        var color = button.getAttribute('data-color');
+                        
+                        // Construct the new image source
+                        var newImageSrc = 'images/' + productid + '-' + color + '.png';
+                        
+                        console.log(newImageSrc)
+
+                        // Find the corresponding item preview image
+                        var itemPreview = button.closest('.item').querySelector('.item-preview');
+                        
+                        // Change the src attribute of the item preview image
+                        itemPreview.src = newImageSrc;
+                    }
+                </script>
+                
                 <div class="carousel">
                     <div class="item">
-                        <a class="strikethrough-button" href="product.html">
-                            <img src="images/schoolkillsart.png" alt="" class="item-preview">
+                        <a class="strikethrough-button" href="product.html" data-productid="schoolkillsart">
+                            <img src="images/schoolkillsart-white.png" alt="" class="item-preview">
                             <div class="item-details squiggly">
                                 <span class="item-name"><p class="strikethrough-text">school kills art</p><img src="images/strikethrough.svg" alt="" class="strikethrough"></span>
                                 <p class="item-price">$30</p>
                             </div>
                         </a>
+                        <ul class="swatches">
+                            <li>
+                                <button class="swatch" onmouseover="changecolor(this)" style="background:white;" data-color="white" data-productid="schoolkillsart"></button>
+                                <button class="swatch" onmouseover="changecolor(this)" style="background:black;" data-color="black" data-productid="schoolkillsart"></button>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="item">
+                    <!-- <div class="item">
                         <a class="strikethrough-button" href="product.html">
                             <img src="images/schoolkillsart.png" alt="" class="item-preview">
                             <div class="item-details squiggly">
@@ -90,7 +115,7 @@
                                 <p class="item-price">$30</p>
                             </div>
                         </a>
-                    </div>
+                    </div> -->
                     
 
                 </div>
