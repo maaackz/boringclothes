@@ -37,47 +37,50 @@
 <body>
     <div id="cursor" class="squiggly" style="position: absolute;left:-50vw;"><img class="cursor-img" src="images/cursor.svg" alt="" >    <script src="scripts/cursor.js"></script></div>
     <div id="header"></div>
-    <main id="product-main">
+    <main id="product-main" class ="">
         <img src="images/schoolkillsart.png" alt="" class="image-preview">
-        <span class="item-info">
-            <h1>school kills art</h1>
-            <h2>$30.00 usd</h2>
-        </span>
-        
-        <section class="item-settings">
-            <h3>color</h3>
-            <section class="color nowrap">
-                <input type="radio" name="color" value="black" id="black">
-                <label for="black">black</label>
-                <input type="radio" name="color" value="white" id="white" checked>
-                <label for="white">white</label>   
-            </section>
-            <h3>size</h3>
-            <section class="size nowrap">
-                <input type="radio" name="size" value="s" id="s">
-                <label for="s">S</label>
-                <input type="radio" name="size" value="m" id="m">
-                <label for="m">M</label>
-                <input type="radio" name="size" value="l" id="l" checked>
-                <label for="l">L</label>
-                <input type="radio" name="size" value="xl" id="xl">
-                <label for="xl">XL</label>
-                <input type="radio" name="size" value="2xl" id="2xl">
-                <label for="2xl">2XL</label>
-            </section>
-            <h3>quantity</h3>
-            <section class="quantity nowrap">
-                <button>-</button>
-                <p>1</p>
-                <button>+</button>
-            </section>
-        </section>
-        <button class="add-to-cart squiggly" data-productid="1Nq6pkHjzBKUipfo1kxHMe9F">
-            <span class="add-to-cart-section">
-                <img src="images/add_to_cart.svg" alt="" class="add-to-cart-text strikethrough-text">
-                <img src="images/strikethrough.svg" alt="" class="strikethrough">
+        <div class="product-right">
+            <span class="item-info squiggly">
+                <h1>school kills art</h1>
+                <h2>$30.00 usd</h2>
             </span>
-        </button>
+            
+            <section class="item-settings">
+                <h3 class="setting-label">color</h3>
+                <section class="setting color">
+                    <input type="radio" name="color" value="black" id="black">
+                    <label for="black">black</label>
+                    <input type="radio" name="color" value="white" id="white" checked>
+                    <label for="white">white</label>   
+                </section>
+                <h3 class="setting-label">size</h3>
+                <section class="setting size">
+                    <input type="radio" name="size" value="s" id="s">
+                    <label for="s">S</label>
+                    <input type="radio" name="size" value="m" id="m">
+                    <label for="m">M</label>
+                    <input type="radio" name="size" value="l" id="l" checked>
+                    <label for="l">L</label>
+                    <input type="radio" name="size" value="xl" id="xl">
+                    <label for="xl">XL</label>
+                    <input type="radio" name="size" value="2xl" id="2xl">
+                    <label for="2xl">2XL</label>
+                </section>
+                <h3 class="setting-label">quantity</h3>
+                <section class="setting quantity nowrap">
+                    <button class="minus">-</button>
+                    <p class="quantity-number">1</p>
+                    <button class="plus">+</button>
+                </section>
+            </section>
+            <button class="add-to-cart" data-productid="1Nq6pkHjzBKUipfo1kxHMe9F">
+                <span class="add-to-cart-section">
+                    <img src="images/add_to_cart.svg" alt="" class="add-to-cart-text strikethrough-text">
+                    <img src="images/strikethrough.svg" alt="" class="strikethrough">
+                </span>
+            </button>
+        </div>
+        
     </main>
     <div id="footer"></div>
 </body>
