@@ -11,20 +11,24 @@
     <button id="checkout">Checkout</button>
     <script>
         var stripe = Stripe(
-            "pk_test_51Nq6LCHjzBKUipfoOFsLnp3XLkzmQ0mbSdxKJkNIqh0IwSieoQNuRXKd0tqw3BMPoSipWKyK1F5pj9eljeufRe2500eDN5sHJZ"
+            "pk_test_51NLHMyCrkwaz05lrC4MYwVc5jTWaZk11KEnPQzfaw27O8YnxOtCKXBql8lSI6k6tEFGZcC4fTEA3a0ygpe2QCOQv00AWKds9sY"
         )
 
         document.getElementById("checkout").addEventListener("click", function(){
             stripe.redirectToCheckout({
                 lineItems: [
                     {
-                        price: "price_1Nq6pkHjzBKUipfo1kxHMe9F",
+                        price: "price_1NtJPECrkwaz05lrv1kCwYTE",
                         quantity: 1,
                     },
                 ],
                     mode: 'payment',
-                    successUrl: "https://www.google.com",
-                    cancelUrl: "https://twitter.com"
+                    successUrl: "http://boringclothes.maaackz.com/success.html",
+                    cancelUrl: "http://boringclothes.maaackz.com/cart.html",
+                    billingAddressCollection: 'required',
+                    shippingAddressCollection: {
+                        allowedCountries: ['US']
+                    }
             }).then(function(result){
                 alert(result)
             })
