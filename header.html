@@ -2,7 +2,7 @@
     <nav>
         <ul>
             <li class="squiggly">
-                <a href="/index.html"><img src="images/logo.svg" alt="" class="logo"></a>
+                <a href="/index.html"><img src="/images/logo.svg" alt="" class="logo"></a>
             </li>
             <li>
                 
@@ -10,11 +10,11 @@
             <span class="right-icons">
                 <li class="squiggly">
                     <button id="dark-mode" onclick="toggleDarkMode()">
-                        <img src="images/dark_mode.svg" alt="">
+                        <img src="/images/dark_mode.svg" alt="">
                     </button>
                 </li>
                 <li class="cart squiggly">
-                    <a href="/cart.html" id="cart-button" class="cart-button"><img src="images/cart.svg" alt=""></a>
+                    <a href="/cart.html" id="cart-button" class="cart-button"><img src="/images/cart.svg" alt=""></a>
                 </li>
             </span>
 
@@ -44,5 +44,15 @@
 
         // Update the 'darkmode' key in localStorage
         localStorage.setItem("darkmode", darkModeBool);
+    }
+</script>
+<script>
+    if (localStorage.getItem('cart')) {
+    }
+    else
+    {
+        let cart = [];
+        let string = JSON.stringify(cart);
+        localStorage.setItem("cart", string);
     }
 </script>

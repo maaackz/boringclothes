@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <title>product</title>
+    <svg class = "animation" xmlns="http://www.w3.org/2000/svg" version="1.1">
+        <defs>
+            <filter id="squiggly-0">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="0"/>
+                <feDisplacementMap id="displacement" in="SourceGraphic" in2="noise" scale="3" />
+            </filter>
+            <filter id="squiggly-1">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="1"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+            <filter id="squiggly-2">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="2"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+            </filter>
+            <filter id="squiggly-3">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="3"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="6" />
+            </filter>
+            
+            <filter id="squiggly-4">
+                <feTurbulence id="turbulence" baseFrequency="0.02" numOctaves="3" result="noise" seed="4"/>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="3" />
+            </filter>
+        </defs> 
+    </svg>
+</head>
+<body>
+    <div id="cursor" class="squiggly" style="position: absolute;left:-50vw;"><img class="cursor-img" src="images/cursor.svg" alt="" >    <script src="scripts/cursor.js"></script></div>
+    <div id="header"></div>
+    <main id="product-main" class="">
+        <script>
+            var priceIdMapping = {
+                'schoolkillsart-white-s': 'price_1Nrw3CCrkwaz05lrMHe7TrTE',
+                'schoolkillsart-white-m': 'price_1Nrw7lCrkwaz05lr68fYC2bE',
+                'schoolkillsart-white-l': 'price_1Nrw86Crkwaz05lrc3d9oz3F',
+                'schoolkillsart-white-xl': 'price_1Nrw8cCrkwaz05lrdm5RPI4Q',
+                'schoolkillsart-white-2xl': 'price_1NrwFpCrkwaz05lrIMVgBNxJ',
+                'schoolkillsart-black-s': 'price_1NrwCNCrkwaz05lr5cEU7d9q',
+                'schoolkillsart-black-m': 'price_1NrwCsCrkwaz05lrzVhqig8B',
+                'schoolkillsart-black-l': 'price_1NrwDKCrkwaz05lrX6OovyEc',
+                'schoolkillsart-black-xl': 'price_1NrwDgCrkwaz05lr9LZjL7HJ',
+                'schoolkillsart-black-2xl': 'price_1NrwE7Crkwaz05lrjClTN1cq'
+            };
+            function addToCart() {
+                var selectedColor = document.querySelector('input[name="color"]:checked').value;
+                var selectedSize = document.querySelector('input[name="size"]:checked').value;
+                var productId = 'schoolkillsart-' + selectedColor + '-' + selectedSize;
+                var priceId = priceIdMapping[productId];
+                var quantity = 1;
+                var quantityNumber = document.querySelector('.quantity-number');
+                quantity = parseInt(quantityNumber.textContent);
+
+
+                if (priceId) {
+                    // Retrieve the existing cart or create an empty one if it doesn't exist
+                    var cart = JSON.parse(localStorage.getItem('cart')) || [];
+                    
+                    // Check if the product with the same productId and priceId already exists in the cart
+                    var existingCartItemIndex = cart.findIndex(function (item) {
+                        return item.productId === productId && item.priceId === priceId;
+                    });
+
+                    if (existingCartItemIndex !== -1) {
+                        // If the item already exists, increment its quantity
+                        cart[existingCartItemIndex].quantity += quantity;
+                    } else {
+                        // Otherwise, create a new cart item
+                        var cartItem = {
+                            productId: productId,
+                            priceId: priceId,
+                            quantity: quantity
+                        };
+                        cart.push(cartItem);
+                    }
+
+                    localStorage.setItem('cart', JSON.stringify(cart));
+                    console.log(cart)
+                    alert('Item added to cart!');
+                } else {
+                    alert('Price ID not found for selected options.');
+                }
+            }
+        </script>
+        <script>
+            function changecolor(color) {
+                var productid = document.querySelector('input[name="color"]:checked').getAttribute('data-productid');
+                var newImageSrc = '/images/' + productid + '-' + color + '.png';
+                var itemPreview = document.querySelector('.image-preview');
+                itemPreview.src = newImageSrc;
+            }
+        </script>
+        <script>
+            var quantity = 1;
+            function incrementQuantity() {
+                quantity++;
+                updateQuantityDisplay();
+            }
+            function decrementQuantity() {
+                if (quantity > 1) {
+                    quantity--;
+                    updateQuantityDisplay();
+                }
+            }
+            function updateQuantityDisplay() {
+                var quantityNumber = document.querySelector('.quantity-number');
+                quantityNumber.textContent = quantity;
+            }
+        </script>
+        <img src="/images/schoolkillsart-white.png" alt="" class="image-preview">
+        <div class="product-right">
+            <span class="item-info squiggly">
+                <h1>school kills art</h1>
+                <h2>$30.00 usd</h2>
+            </span>
+            <section class="item-settings">
+                <h3 class="setting-label">color</h3>
+                <section class="setting color">
+                    <input type="radio" name="color" value="black" id="black" data-productid="schoolkillsart" onchange="changecolor('black')">
+                    <label for="black">black</label>
+                    <input type="radio" name="color" value="white" id="white" checked data-productid="schoolkillsart" onchange="changecolor('white')">
+                    <label for="white">white</label>
+                </section>
+                <h3 class="setting-label">size</h3>
+                <section class="setting size">
+                    <input type="radio" name="size" value="s" id="s">
+                    <label for="s">S</label>
+                    <input type="radio" name="size" value="m" id="m">
+                    <label for="m">M</label>
+                    <input type="radio" name="size" value="l" id="l" checked>
+                    <label for="l">L</label>
+                    <input type="radio" name="size" value="xl" id="xl">
+                    <label for="xl">XL</label>
+                    <input type="radio" name="size" value="2xl" id="2xl">
+                    <label for="2xl">2XL</label>
+                </section>
+                <h3 class="setting-label">quantity</h3>
+                <section class="setting quantity nowrap">
+                    <button class="minus" onclick="decrementQuantity()">-</button>
+                    <p class="quantity-number">1</p>
+                    <button class="plus" onclick="incrementQuantity()">+</button>
+                </section>
+            </section>
+            <button class="add-to-cart" onclick="addToCart()">
+                <span class="add-to-cart-section">
+                    <img src="images/add_to_cart.svg" alt="" class="add-to-cart-text strikethrough-text">
+                    <img src="images/strikethrough.svg" alt="" class="strikethrough">
+                </span>
+            </button>
+        </div>
+    </main>
+    <div id="footer"></div>
+</body>
+</html>
+
+<div id="animation"></div>
+
+<script>
+    $(function(){
+        $( "#header" ).load( "header.html" );
+        $( "#footer" ).load( "footer.html" );
+        $("#animation").load("animation.html")
+    });
+</script>

@@ -2,9 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
-    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="/styles/main.css">
     <title>product</title>
     <svg class = "animation" xmlns="http://www.w3.org/2000/svg" version="1.1">
         <defs>
@@ -33,7 +33,7 @@
     </svg>
 </head>
 <body>
-    <div id="cursor" class="squiggly" style="position: absolute;left:-50vw;"><img class="cursor-img" src="images/cursor.svg" alt="" >    <script src="scripts/cursor.js"></script></div>
+    <div id="cursor" class="squiggly" style="position: absolute;left:-50vw;"><img class="cursor-img" src="/images/cursor.svg" alt="" >    <script src="/scripts/cursor.js"></script></div>
     <div id="header"></div>
     <main id="product-main" class="">
         <script>
@@ -92,7 +92,7 @@
         <script>
             function changecolor(color) {
                 var productid = document.querySelector('input[name="color"]:checked').getAttribute('data-productid');
-                var newImageSrc = 'images/' + productid + '-' + color + '.png';
+                var newImageSrc = '/images/' + productid + '-' + color + '.png';
                 var itemPreview = document.querySelector('.image-preview');
                 itemPreview.src = newImageSrc;
             }
@@ -114,7 +114,7 @@
                 quantityNumber.textContent = quantity;
             }
         </script>
-        <img src="images/schoolkillsart-white.png" alt="" class="image-preview">
+        <img src="/images/schoolkillsart-white.png" alt="" class="image-preview">
         <div class="product-right">
             <span class="item-info squiggly">
                 <h1>school kills art</h1>
@@ -150,8 +150,8 @@
             </section>
             <button class="add-to-cart" onclick="addToCart()">
                 <span class="add-to-cart-section">
-                    <img src="images/add_to_cart.svg" alt="" class="add-to-cart-text strikethrough-text">
-                    <img src="images/strikethrough.svg" alt="" class="strikethrough">
+                    <img src="/images/add_to_cart.svg" alt="" class="add-to-cart-text strikethrough-text">
+                    <img src="/images/strikethrough.svg" alt="" class="strikethrough">
                 </span>
             </button>
         </div>
@@ -164,8 +164,8 @@
 
 <script>
     $(function(){
-        $( "#header" ).load( "header.html" );
-        $( "#footer" ).load( "footer.html" );
-        $("#animation").load("animation.html")
+        $( "#header" ).load( "/header.html" );
+        $( "#footer" ).load( "/footer.html" );
+        $("#animation").load("/animation.html")
     });
 </script>

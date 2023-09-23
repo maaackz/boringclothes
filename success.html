@@ -1,0 +1,18 @@
+<script>
+    // Function to clear the cart and redirect to index.html
+    function clearCartAndRedirect() {
+        // Clear the cart in local storage
+        let cart = []
+        let string = JSON.stringify(cart)
+        localStorage.setItem("cart", string)
+
+
+        // Redirect to index.html
+        window.location.href = 'index.html';
+    }
+
+    // Call the function when needed, for example, when clicking a "Clear Cart" button
+    // You can add this to a button click event handler or any other trigger.
+    clearCartAndRedirect();
+
+</script>

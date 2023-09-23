@@ -44,38 +44,7 @@
 
     <main class="checkout">
         <h1 class="cart">cart</h1>
-        <section id="cart-items">
-            <div class="cart-item">
-                <div class="item-left">
-                    <img src="images/schoolkillsart-white.png" alt="" class="cart-item-preview">
-                <div class="item-info">
-                    <div>
-                        <h2>school kills art (t-shirt)</h2>
-                        <p class="individual-price">$30.00</p>
-                    </div>
-                    <div>
-                        <p>
-                            color: black
-                            <br>
-                            size: L
-                        </p>
-                    </div>
-            
-                </div>
-                </div>
-                <div class="item-right">
-                    <p class="combined-price">$30.00</p>
-                    <span>
-                        <section class="cart-item-quantity">
-                            <button class="minus" onclick="decrementQuantity()">-</button>
-                            <p class="quantity-number">1</p>
-                            <button class="plus" onclick="incrementQuantity()">+</button>
-                        </section>
-                        <button class="trash squiggly"><img class="trash-icon" src="images/trash.svg" alt="trash can icon"></button>
-                    </span>
-                </div>
-            </div>
-        </section>
+        <section id="cart-items"></section>
         <button id="checkout">checkout</button>
         <script>
             var priceIdMapping = {
@@ -143,28 +112,89 @@
         localStorage.setItem("cart", string)
     </script> -->
     <script>
-            // 1. Retrieve the cart array from local storage.
         // 1. Retrieve the cart array from local storage.
         const cartArray = JSON.parse(localStorage.getItem('cart'));
 
         // 2. Get a reference to the cart-items section.
         const cartItemsSection = document.getElementById('cart-items');
 
-            var itemTitleMapping = {
-                'schoolkillsart' : 'school kills art (t-shirt)'
+        var itemTitleMapping = {
+            'schoolkillsart': 'school kills art (t-shirt)'
+        };
+
+        // Function to extract color and size from productId
+        function extractItemData(productId) {
+            const parts = productId.split('-');
+            const item = parts[0];
+            const color = parts[1];
+            const size = parts[2];
+            return { item, color, size };
+        }
+
+        function incrementQuantity(productId) {
+            const foundItem = cartArray.find((cartItem) => cartItem.productId === productId);
+            if (foundItem) {
+                const newQuantity = foundItem.quantity + 1;
+                updateQuantity(productId, newQuantity);
+            }
+        }
+
+        // Function to decrement quantity
+        function decrementQuantity(productId) {
+            const foundItem = cartArray.find((cartItem) => cartItem.productId === productId);
+            if (foundItem && foundItem.quantity > 1) {
+                const newQuantity = foundItem.quantity - 1;
+                updateQuantity(productId, newQuantity);
+            }
+        }
+
+
+        // Function to update the quantity and local storage
+        function updateQuantity(productId, newQuantity) {
+            // Update the quantity in the cartArray
+            const foundItem = cartArray.find((cartItem) => cartItem.productId === productId);
+            if (foundItem) {
+                foundItem.quantity = newQuantity;
             }
 
-            // Function to extract color and size from productId
-            function extractItemData(productId) {
-                const parts = productId.split('-');
-                const item = parts[0];
-                const color = parts[1];
-                const size = parts[2];
-                return { item, color, size };
+            // Update the quantity in the local storage cart
+            localStorage.setItem('cart', JSON.stringify(cartArray));
+
+            // Update the quantity displayed on the page
+            const quantityNumberElement = document.querySelector(`[data-product-id="${productId}"] .quantity-number`);
+            if (quantityNumberElement) {
+                quantityNumberElement.textContent = newQuantity;
+            }
+        }
+
+        // Function to remove an item from the cart and local storage
+        function removeItem(productId) {
+            // Remove the item from the cartArray
+            const itemIndex = cartArray.findIndex((cartItem) => cartItem.productId === productId);
+            if (itemIndex !== -1) {
+                cartArray.splice(itemIndex, 1);
             }
 
-            // 3. Loop through the items in the cart array.
-            if (cartArray) {
+            // Update the cart in local storage
+            localStorage.setItem('cart', JSON.stringify(cartArray));
+
+            // Remove the item from the page
+            const cartItemElement = document.querySelector(`[data-product-id="${productId}"]`);
+            if (cartItemElement) {
+                cartItemElement.remove();
+            }
+
+            // Check if the cart is empty and display a message if it is
+            if (cartArray.length === 0) {
+                cartItemsSection.innerHTML = '<p class="cart-empty">your cart is empty. &nbsp;<a href="index.html">go put some stuff here and come back bruh</a></p>';
+            }
+        }
+
+        // 3. Check if the cart is empty and display a message if it is
+        if (cartArray && cartArray.length === 0) {
+            cartItemsSection.innerHTML = '<p class="cart-empty">your cart is empty. &nbsp;<a href="index.html">go put some stuff here and come back bruh</a></p>';
+        } else if (cartArray) {
+            // Loop through the items in the cart array
             cartArray.forEach((cartItem) => {
                 // Extract color and size from productId
                 const { item, color, size } = extractItemData(cartItem.productId);
@@ -172,42 +202,50 @@
                 // Create a new cart-item element.
                 const newCartItem = document.createElement('div');
                 newCartItem.classList.add('cart-item');
+                newCartItem.setAttribute('data-product-id', cartItem.productId);
 
                 // Set the content of the cart-item element based on the item details.
                 newCartItem.innerHTML = `
-                <div class="item-left">
-                    <img src="images/${item + "-" + color}.png" alt="" class="cart-item-preview">
-                    <div class="item-info">
-                    <div>
-                        <h2>${itemTitleMapping[item]}</h2>
-                        <p class="individual-price">$30.00</p>
+                    <div class="item-left">
+                        <img src="images/${item + "-" + color}.png" alt="" class="cart-item-preview">
+                        <div class="item-info">
+                            <div>
+                                <h2>${itemTitleMapping[item]}</h2>
+                                <p class="individual-price">$30.00</p>
+                            </div>
+                            <div>
+                                <p>
+                                    color: ${color}
+                                    <br>
+                                    size: ${size.toUpperCase()}
+                                </p>
+                            </div>
+                        </div>
                     </div>
-                    <div>
-                        <p>
-                        color: ${color}
-                        <br>
-                        size: ${size.toUpperCase()}
-                        </p>
+                    <div class="item-right">
+                        <p class="combined-price">$30.00</p>
+                        <span>
+                            <section class="cart-item-quantity">
+                                <button class="minus" onclick="decrementQuantity('${cartItem.productId}')">-</button>
+                                <p class="quantity-number">${cartItem.quantity}</p>
+                                <button class="plus" onclick="incrementQuantity('${cartItem.productId}')">+</button>
+                            </section>
+                            <button class="trash squiggly" onclick="removeItem('${cartItem.productId}')"><img class="trash-icon" src="images/trash.svg" alt="trash can icon"></button>
+                        </span>
                     </div>
-                    </div>
-                </div>
-                <div class="item-right">
-                    <p class="combined-price">$30.00</p>
-                    <span>
-                    <section class="cart-item-quantity">
-                        <button class="minus" onclick="decrementQuantity()">-</button>
-                        <p class="quantity-number">${cartItem.quantity}</p>
-                        <button class="plus" onclick="incrementQuantity()">+</button>
-                    </section>
-                    <button class="trash squiggly"><img class="trash-icon" src="images/trash.svg" alt="trash can icon"></button>
-                    </span>
-                </div>
                 `;
 
                 // 4. Append the new cart-item element to the cart-items section.
                 cartItemsSection.appendChild(newCartItem);
-            });
+
+
+                });
             }
+
+            // Function to increment quantity
+
+
+
     </script>
 
 </body>
