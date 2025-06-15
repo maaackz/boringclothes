@@ -1,2 +1,2 @@
 # boringclothes
-client-sided e-commerce website with stripe.js integration.
+static e-commerce website with stripe.js integration.
